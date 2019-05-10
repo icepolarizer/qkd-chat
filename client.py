@@ -49,7 +49,7 @@ if opp_id:
     time.sleep(1)
     print("메인 서버에 피클링된 큐비트와 회로를 전송 중입니다. 기다려 주십시오...")
     time.sleep(1)
-    with open('laser.alice', 'rb') as file:
+    with open('alice.laser', 'rb') as file:
         clientSock.send(file.read())
 else:
     clientSock.send("~".encode('utf-8'))
@@ -60,7 +60,7 @@ else:
     print("%s로부터 B.O.B KEY, 큐비트, 편광 필터와 회로를 수신합니다..."%opp_id)
     time.sleep(1)
     laser = clientSock.recv(2048)
-    with open('laser.bob', 'wb') as file:
+    with open('bob.laser', 'wb') as file:
         file.write(laser)
     key = str(bob.key())
 
