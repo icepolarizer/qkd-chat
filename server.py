@@ -2,6 +2,7 @@ from socket import *
 import threading
 import time
 import sys
+import logging
 
 
 clients = {}
@@ -11,7 +12,7 @@ def send(sock, data):
     try:
         sock.send(data.encode('utf-8'))
     except error as e:
-        print(e)
+        logging.error(e)
 
 
 def comm(sock1, sock2): # Relay message from sock1 to sock2
@@ -74,7 +75,7 @@ def connect():
             print(clients)
 
         except error as e:
-            print(e)
+            logging.error(e)
 
 
 port = int(sys.argv[1])
