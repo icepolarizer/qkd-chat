@@ -1,2 +1,4 @@
 # qkd-chat
-# qkd-chat
+Socket + Qiskit + Python == PROFIT
+
+
