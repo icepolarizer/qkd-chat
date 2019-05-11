@@ -133,7 +133,7 @@ def key(): # Main function
         Bob_result += result_key_so[0][::-1]
 
 
-    with open('laser.alice', 'wb') as file:
+    with open('alice.laser', 'wb') as file:
         pickle.dump(Alice_rotate, file)
         pickle.dump(Bob_rotate, file)
         pickle.dump(nlist, file)

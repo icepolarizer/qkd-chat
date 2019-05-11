@@ -60,7 +60,7 @@ def makeKey(rotation1,rotation2,results):
 
 
 def key(): # Main function
-    with open('laser.bob', 'rb') as file:
+    with open('bob.laser', 'rb') as file:
         Alice_rotate = pickle.load(file)
         Bob_rotate = pickle.load(file)
         nlist = pickle.load(file)
