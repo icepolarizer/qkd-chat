@@ -12,6 +12,7 @@ from Crypto import Random
 from Crypto.Cipher import AES
 
 
+# AESCipher from: https://burningrizen.tistory.com/5
 class AESCipher():
 
     def __init__(self, key):
