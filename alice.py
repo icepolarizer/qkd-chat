@@ -1,3 +1,4 @@
+# Implemented BB84 Algorithm Code from https://github.com/Qiskit/qiskit-tutorials/blob/master/community/awards/teach_me_qiskit_2018/quantum_cryptography_qkd/Quantum_Cryptography2.ipynb
 #other useful packages
 import math
 import matplotlib.pyplot as plt
