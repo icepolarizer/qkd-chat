@@ -17,7 +17,7 @@ def send(sock, data):
 
 def comm(sock1, sock2): # Relay message from sock1 to sock2
     while True:
-        data = sock1.recv(1024)
+        data = sock1.recv(2048)
         print(data)
         if data:
             sock2.send(data)
@@ -31,31 +31,31 @@ def connect():
         try:
             sock, addr = serverSock.accept()
             # user_id = int(time.time())
-            print(str(addr), '에서 접속 요청을 확인. 접속에 성공하였습니다.')
+            print('Request from ', str(addr), 'connection successful.')
 
-            user_id = sock.recv(1024).decode('utf-8')
+            user_id = sock.recv(2048).decode('utf-8')
             clients[user_id] = sock
 
-            print("%s에서 링크 요청." % user_id)
+            print("Link request from %s." % user_id)
 
             # send(sock, str(list(clients.keys())))
 
             try:
-                print("링크 대상 ID 수신 대기...")
-                opp_id = sock.recv(1024).decode('utf-8')
-                print("링크 대상 ID 수신함.")
+                print("Waiting for Opponent's ID...")
+                opp_id = sock.recv(2048).decode('utf-8')
+                print("ID Recieved.")
             except UnicodeDecodeError:
-                print("ID에 결함.")
+                print("Invalid ID")
                 # send(sock, "No valid ID")
                 continue
 
             if opp_id == "~":
-                print("교신 대상 ID 공백. 해당 유저는 교신 대기 상태로 전환.")
+                print("Blank id. Corresponding user will go into sleep mode")
                 continue
 
 
             if opp_id not in clients:
-                print("해당 유저 존재하지 않음.")
+                print("No such user")
                 # send(sock, "Can't find user")
                 continue
 
@@ -65,7 +65,7 @@ def connect():
 
             send(clients[opp_id], user_id)
 
-            print("%s에서 %s로의 링크 요청을 확인. 링크합니다."%(user_id, opp_id))
+            print("Link request from %s to %s. Linking..."%(user_id, opp_id))
 
             clients[opp_id].send(laser)
 
@@ -84,7 +84,7 @@ serverSock = socket(AF_INET, SOCK_STREAM)
 serverSock.bind(('', port))
 serverSock.listen(1)
 
-print('%d번 포트, INCOM 접속 대기중...'%port)
+print('PORT %d, waiting fror request...'%port)
 
 connector = threading.Thread(target=connect)
 connector.start()
